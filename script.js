@@ -1,15 +1,23 @@
 let SHEET_ID = '138AkMo3HwXfvEouNgPANlLRGBnZrK_WpTK8M2gjg5Gk'
 let SHEET_TITLE = 'Form Responses 1';
-let SHEET_RANGE ='A2:G100';
+let SHEET_RANGE ='A2:H100';
 
 let FULL_URL = ('https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?sheet=' + SHEET_TITLE + '&range=' + SHEET_RANGE);
 
 fetch(FULL_URL)
 .then(res => res.text())
 .then(rep => {
+
     let data = JSON.parse(rep.substr(47).slice(0,-2));
-    
+   // Assuming your data looks something like this
+    // Extract rows from the response
     let length = data.table.rows.length;
+    let rows = data.table.rows;
+
+    
+    // Now, data2 contains only the rows where the value of column H is 1
+    // console.log(data2);
+    
     let card = document.getElementById('card');
     let card2 = document.getElementById('card2');
     let cardh1 = document.getElementById('cardh1');
@@ -28,9 +36,15 @@ fetch(FULL_URL)
     cardh5.innerHTML = data.table.rows[0].c[5].v
     cardh6.innerHTML = "By, " + data.table.rows[0].c[2].v
     carda.href = data.table.rows[0].c[4].v
-    console.log(data.table.rows[0].c[4].v);
 
     for(let i = 1; i<length; i++){
+                // Filter the data based on the value of column H
+            var data2 = rows.filter(function (row) {
+                // Assuming H is the 8th column (index 7)
+                return row.c[7] && row.c[7].v === 1;
+            });
+
+        
                 // Assuming you have a reference to your NewBox div
         var NewBox = document.createElement('div');
         NewBox.id = ("box" + i);
@@ -50,12 +64,11 @@ fetch(FULL_URL)
         a.className ="carda"
 
     //     // Set the content for the h2 element (you can replace "Your Heading" with the actual heading text)
-    //     // console.log(data.table.rows[i].c[5].v)
 
-        h1.innerHTML = data.table.rows[i].c[3].v;
-        h5.innerHTML = data.table.rows[i].c[5].v;
-        h6.innerHTML = "By, " + data.table.rows[0].c[2].v
-        a.href = data.table.rows[i].c[4].v;
+        h1.innerHTML = data2[i].c[3].v;
+        h5.innerHTML = data2[i].c[5].v;
+        h6.innerHTML = "By, " + data2[i].c[2].v
+        a.href = data2[i].c[4].v;
         a.innerHTML = "Visit Website";
 
         // Append the h2 element to the NewBox div
@@ -65,4 +78,5 @@ fetch(FULL_URL)
         div.appendChild(a);
         NewBox.appendChild(div);
     }
+
 });
