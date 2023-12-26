@@ -117,6 +117,7 @@ const searchFun = () => {
             var data7 = data6
             card.style.display = "none"
             card2.style.display = "none"
+            card4.style.flexDirection = "column-reverse"
             var NewBox = document.createElement('div');
             NewBox.id = ("box" + i);
             NewBox.className = ("card4")
