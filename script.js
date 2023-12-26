@@ -32,12 +32,12 @@ fetch(FULL_URL)
     // elem2.innerHTML = data.table.rows[0].c[0].v;
 
 
-    cardh1.innerHTML = data.table.rows[0].c[3].v
-    cardh5.innerHTML = data.table.rows[0].c[5].v
-    cardh6.innerHTML = "By, " + data.table.rows[0].c[2].v
-    carda.href = data.table.rows[0].c[4].v
+    // cardh1.innerHTML = data.table.rows[0].c[3].v
+    // cardh5.innerHTML = data.table.rows[0].c[5].v
+    // cardh6.innerHTML = "By, " + data.table.rows[0].c[2].v
+    // carda.href = data.table.rows[0].c[4].v
 
-    for(let i = 1; i<length; i++){
+    for(let i = 0; i<length; i++){
                 // Filter the data based on the value of column H
             var data2 = rows.filter(function (row) {
                 // Assuming H is the 8th column (index 7)
@@ -77,6 +77,104 @@ fetch(FULL_URL)
         div.appendChild(h6);
         div.appendChild(a);
         NewBox.appendChild(div);
-    }
+        }
+
 
 });
+
+function searchdata() {
+    let SHEET_ID = '138AkMo3HwXfvEouNgPANlLRGBnZrK_WpTK8M2gjg5Gk';
+    let SHEET_TITLE = 'Form Responses 1';
+    let SHEET_RANGE ='A2:H100';
+  
+    let FULL_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${SHEET_TITLE}&range=${SHEET_RANGE}`;
+  
+    return fetch(FULL_URL)
+      .then(res => res.text())
+      .then(rep => {
+        return JSON.parse(rep.substr(47).slice(0, -2));
+      });
+  }
+
+const searchFun = () => {
+    searchdata()
+      .then(data => {
+        let length = data.table.rows.length;
+        let rows = data.table.rows;
+        let filter = document.getElementById('myinput').value.toUpperCase();
+        let card = document.getElementById('card');
+        let card2 = document.getElementById('card2');
+        let card3 = document.getElementById('card3');
+  
+        for (let i = 0; i < length; i++) {
+          let rowData = rows[i].c;
+          let columnHValue = rowData[7] && rowData[7].v;
+          let data6 = data
+  
+        //   console.log('Row:', i, 'Column H Value:', columnHValue, 'Data 6 Value:', data6);
+  
+          if (columnHValue === 1 && data6 && data6.table.rows[i].c[5].v.toUpperCase().includes(filter)) {
+            var data7 = data6
+            card.style.display = "none"
+            card2.style.display = "none"
+            var NewBox = document.createElement('div');
+            NewBox.id = ("box" + i);
+            NewBox.className = ("card")
+            card3.append(NewBox);
+
+            // // Create an h6 element
+            var h1 = document.createElement('h1');
+            h1.className ="cardh1"
+            var h5 = document.createElement('h5');
+            h5.className ="cardh5"
+            var h6 = document.createElement('h6');
+            h6.className ="cardh6"
+            var div = document.createElement('div');
+            div.className ="carding"
+            var a = document.createElement('a');
+            a.className ="carda"
+            
+            // Set the content for the h2 element (you can replace "Your Heading" with the actual heading text)
+
+            h1.innerHTML = data7.table.rows[i].c[3].v;
+            h5.innerHTML = data7.table.rows[i].c[5].v;
+            h6.innerHTML = "By, " + data7.table.rows[i].c[2].v
+            a.href = data7.table.rows[i].c[4].v;
+            a.innerHTML = "Visit Website";
+
+            // Append the h2 element to the NewBox div
+            NewBox.appendChild(h1);
+            div.appendChild(h5);
+            div.appendChild(h6);
+            div.appendChild(a);
+            NewBox.appendChild(div);
+            console.log(data7);
+          } else{
+            card.style.display = "none"
+            card2.style.display = "none"
+
+
+            var NewBox2 = document.createElement('div');
+            NewBox2.id = ("box" + i);
+            NewBox2.className = ("card4")
+            card3.append(NewBox2);
+
+            var h5 = document.createElement('h5');
+            h5.className ="cardh1"
+            h5.innerHTML = "No Data Found!";
+            NewBox2.style.backgroundColor = "red"
+
+            div.appendChild(h5);
+            NewBox2.appendChild(div);
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  };
+  
+  document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    searchFun(); // Call your search function when the form is submitted
+  });
