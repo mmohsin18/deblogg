@@ -119,7 +119,7 @@ const searchFun = () => {
             card2.style.display = "none"
             var NewBox = document.createElement('div');
             NewBox.id = ("box" + i);
-            NewBox.className = ("card")
+            NewBox.className = ("card4")
             card3.append(NewBox);
 
             // // Create an h6 element
@@ -149,23 +149,6 @@ const searchFun = () => {
             div.appendChild(a);
             NewBox.appendChild(div);
             console.log(data7);
-          } else{
-            card.style.display = "none"
-            card2.style.display = "none"
-
-
-            var NewBox2 = document.createElement('div');
-            NewBox2.id = ("box" + i);
-            NewBox2.className = ("card4")
-            card3.append(NewBox2);
-
-            var h5 = document.createElement('h5');
-            h5.className ="cardh1"
-            h5.innerHTML = "No Data Found!";
-            NewBox2.style.backgroundColor = "red"
-
-            div.appendChild(h5);
-            NewBox2.appendChild(div);
           }
         }
       })
