@@ -13,27 +13,41 @@
 </head>
 <body class="text-white px-6 py-4">
   <nav class="w-full px-2 py-4">
-    <div class="w-full flex gap-6 items-center">
-      <i class="ri-news-fill text-4xl"></i>
-      <a href="index.html" class="text-2xl font-bold">ReBlogg.</a>
+    <div class="nav flex justify-around items-center">
+      <div class="nav1">
+        <i class="ri-news-fill text-4xl"></i>
+        <a href="index.html" class="text-2xl font-bold">ReBlogg.</a>
+      </div>
+      <div>
+        <a href="https://forms.gle/L4W78kZqd1idGdCG9" class="text-sm font-bold border-2 p-3 rounded-lg">Submit New Blogg.</a>
+      </div>
+      <div>
+        <form id="searchForm">
+          <input class="text-black px-5 border-2 border-black py-2 rounded-lg" placeholder="Search Blogs" type="text" id="myinput" />
+          <button class="bg-zinc-900 px-3 py-2 rounded-lg" type="submit">Submit</button>
+        </form>
+
+      </div>
     </div>
   </nav>
   <div>
-    <div class="cards gap-10">
+    <div class="cards mt-3">
+      <div id="card3" class="card3">
+      </div>
       <div id="card" class="card">
-          <h1 id="cardh1" class="cardh1 items-center justify-center h-fit"></h1>
+          <h1 id="cardh1" class="cardh1 items-center justify-center h-fit">Perplexity Ai</h1>
           <div class="carding flex flex-col">
-            <h5 id="cardh5" class="cardh5"></h5>
-            <h6 id="cardh6" class="cardh6"></h6>
-            <a href="" id="carda" class="carda">Visit Website</a>
+            <h5 id="cardh5" class="cardh5">ChatGPT but for studies. Students and Researchers can use it for research purposes. It can summarize lessons and help writing articles.</h5>
+            <h6 id="cardh6" class="cardh6">By, Muhammad Mohsin</h6>
+            <a href="https://www.perplexity.ai/" id="carda" class="carda">Visit Website</a>
           </div>
       </div>
-      <a id="card2" class="card2">
-
-      </a>
-    </div>
+      <div id="card2" class="card2">
+      </div>
   </div>
-
+  <div class="w-full flex items-center justify-center">
+     <a href="/" class="bg-zinc-900 px-3 py-2 rounded-lg" type="submit">Refresh .</a>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
