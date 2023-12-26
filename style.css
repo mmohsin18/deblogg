@@ -14,13 +14,24 @@ html, body{
     display: none;
 }
 
-.card{
+.nav{
+    display: flex;
+}
+
+.card, .card4{
     background-color: rgb(33, 33, 33);
 }
 
-.card, .card2{
+.cards{
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+}
+
+.card, .card2, card3, .card4{
     width: 100%;
-    gap: 20px;
+    height: fit-content;
+    padding-bottom: 10px;
     display: flex;
     border-radius: 1rem;
     margin-bottom: 18px;
@@ -72,15 +83,21 @@ html, body{
     flex-direction: column;
     height: fit-content;
     background-color: rgb(33, 33, 33);
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     padding: 5px;
     border-radius: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    .card, .card2{
+    .nav{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+    .card, .card2, .card3{
         width: 100w;
+        height: fit-content;
         display: flex;
         flex-direction: column;
         gap: 0px;
