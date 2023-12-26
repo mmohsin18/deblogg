@@ -151,9 +151,6 @@ const searchFun = () => {
             console.log(data7);
           }
         }
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
       });
   };
   
