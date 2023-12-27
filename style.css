@@ -13,6 +13,10 @@ html, body{
 *::-webkit-scrollbar{
     display: none;
 }
+*::selection{
+    color: #525252;
+    background-color: #fff;
+}
 
 .nav{
     display: flex;
@@ -45,7 +49,6 @@ html, body{
     padding: 20px;
 } */
 
-
 .cardh1{
     width: 18%;
     font-size: 1.6rem;
@@ -56,6 +59,7 @@ html, body{
     font-size: 0.8rem;
     font-weight: 100;
     margin-top: 10px;
+    margin-right: 10px;
 }
 .carda{
     width: fit-content;
